@@ -8,10 +8,10 @@ from enmspring import k_b0_util
 plt.rcParams['font.family'] = 'sans-serif'
 
 class ScatterPlot:
-    hosts = ['21_nome', '21_allme']
-    n_bp = 21
-#    hosts = ['nome', 'me1', 'me2', 'me3', 'me12', 'me23', 'me123']
-#    n_bp = 13
+#     hosts = ['21_nome', '21_allme']
+#     n_bp = 21
+    hosts = ['nome', 'me1', 'me2', 'me3', 'me12', 'me23', 'me123']
+    n_bp = 13
     type_na = 'bdna+bdna'
     
     def __init__(self, rootfolder, cutoff):
@@ -48,10 +48,14 @@ class ScatterPlot:
         d_axes = dict()
         idx = 0
         for row_id in range(2):
-            for col_id in range(3):
-                host = self.hosts[idx]
-                d_axes[host] = axes[row_id, col_id]
-                idx += 1
+            for col_id in range(4):
+                if [row_id, col_id] == [1,3]:
+                    continue
+                else:
+                    host = self.hosts[idx]
+                    d_axes[host] = axes[row_id, col_id]                    
+                    idx += 1
+                
         return d_axes
 
     def __scatter_subcategory(self, ax, k_b0_dict, category):
@@ -85,7 +89,7 @@ class ScatterPlot:
                    'R': (1, 0.3), 'RB': (0.9, 0.45), 'bp': (0.5, 0.3)}
         lgfz = 12
         lg_anchor = d_lganc[category]
-        ax.legend(frameon=False, fontsize=lgfz, bbox_to_anchor=lg_anchor, loc='center right', markerscale=1.5, handletextpad=-0.1, ncol=2)
+        ax.legend(frameon=False, fontsize=lgfz, bbox_to_anchor=lg_anchor, loc='upper right', markerscale=1.5, handletextpad=-0.1, ncol=2)
 
     def __get_mean_std_string(self, k_b0_dict, subcategory):
         nbond = k_b0_dict[subcategory]['nbond'] / self.n_bp
@@ -118,10 +122,10 @@ class ScatterPlot:
             ax.set_ylabel(ylabel, fontsize=lbfz)
 
 class BoxPlot:
-#    hosts = ['nome', 'me1', 'me2', 'me3', 'me12', 'me23', 'me123']
-#    n_bp = 13
-    hosts = ['21_nome', '21_allme']
-    n_bp = 21
+    hosts = ['nome', 'me1', 'me2', 'me3', 'me12', 'me23', 'me123']
+    n_bp = 13
+#     hosts = ['21_nome', '21_allme']
+#     n_bp = 21
     type_na = 'bdna+bdna'
     
     def __init__(self, rootfolder, cutoff):
@@ -199,11 +203,11 @@ class CorrelationPlot:
 
 #    abbr_hosts = {'a_tract_21mer': 'A-tract', 'ctct_21mer': 'CTCT', 'gcgc_21mer': 'GCGC',
 #                  'g_tract_21mer': 'G-tract', 'atat_21mer': 'ATAT', 'tgtg_21mer': 'TGTG'}       
-    hosts = ['21_nome', '21_allme']
-    n_bp = 21   
+#     hosts = ['21_nome', '21_allme']
+#     n_bp = 21   
 
-#    hosts = ['nome', 'me1', 'me2', 'me3', 'me12', 'me23', 'me123']
-#    n_bp = 13
+    hosts = ['nome', 'me1', 'me2', 'me3', 'me12', 'me23', 'me123']
+    n_bp = 13
     subcategories = ['PP0', 'PP1', 'PP2', 'PP3', 
                          'R0', 'R1', 'RB0', 'RB1', 'RB2', 'RB3', 'PB', 
                          'st', 'hb', 'bp1', 'bp2']

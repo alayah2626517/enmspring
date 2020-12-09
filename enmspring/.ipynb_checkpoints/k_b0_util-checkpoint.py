@@ -31,8 +31,8 @@ abbr_dict = {'arna+arna': 'dsRNA', 'bdna+bdna': 'dsDNA'}
 ###
 def get_central_bps_df(df):
     clean_criteria = 1e-3
-    start_resid = 4
-    end_resid = 18
+    start_resid = 1
+    end_resid = 13
     mask = (df['k'] > clean_criteria)
     df_1 = df[mask]
     mask = df_1['Resid_i'].between(start_resid, end_resid)
